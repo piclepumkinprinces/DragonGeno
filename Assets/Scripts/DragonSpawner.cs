@@ -9,16 +9,21 @@ public class DragonSpawner : MonoBehaviour
     public int dragonCount;
     public float dragonSpawnRate;
 
-    public GameObject dragons;
-
     private List<GameObject> spawnedDragons = new List<GameObject>();
 
+    public GameObject[] dragonPrefabs;
+
     private Transform dragonContainer;
+
+    public bool spawn;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        GameObject containerObject = new GameObject("Gespawnde_Objecten");
+        spawn = true;
+
+
+        GameObject containerObject = new GameObject("Spawned Dragons");
         dragonContainer = containerObject.transform;
 
         StartCoroutine(SpawnDragons());
@@ -29,6 +34,13 @@ public class DragonSpawner : MonoBehaviour
     {
         spawnedDragons.RemoveAll(dragons => dragons == null);
         dragonCount = spawnedDragons.Count;
+
+        if (dragonCount < maxDragons && !spawn)
+        {
+            spawn = true;
+
+            StartCoroutine(SpawnDragons());
+        }
     }
 
     IEnumerator SpawnDragons()
@@ -39,11 +51,15 @@ public class DragonSpawner : MonoBehaviour
 
             yield return new WaitForSeconds(dragonSpawnRate);
         }
+
+        spawn = false;
     }
 
     void Spawn()
     {
-        GameObject newDragon = Instantiate(dragons, transform.position, Quaternion.identity, dragonContainer);
+        int randomDragon = Random.Range(0, dragonPrefabs.Length);
+
+        GameObject newDragon = Instantiate(dragonPrefabs[randomDragon], transform.position, Quaternion.identity, dragonContainer);
 
         spawnedDragons.Add(newDragon);
         dragonCount = spawnedDragons.Count;
