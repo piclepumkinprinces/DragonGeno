@@ -278,7 +278,7 @@ MonoBehaviour:
   minDragons: 2
   maxDragons: 5
   dragonCount: 0
-  dragonSpawnRate: 5
+  dragonSpawnRate: 1
   dragons: {fileID: 8765237793881309081, guid: c48ee794e27bd934fa166f50ca038012, type: 3}
 --- !u!1 &423529120
 GameObject:

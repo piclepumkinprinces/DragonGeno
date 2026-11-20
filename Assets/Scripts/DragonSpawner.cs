@@ -13,9 +13,14 @@ public class DragonSpawner : MonoBehaviour
 
     private List<GameObject> spawnedDragons = new List<GameObject>();
 
+    private Transform dragonContainer;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        GameObject containerObject = new GameObject("Gespawnde_Objecten");
+        dragonContainer = containerObject.transform;
+
         StartCoroutine(SpawnDragons());
     }
 
@@ -24,16 +29,11 @@ public class DragonSpawner : MonoBehaviour
     {
         spawnedDragons.RemoveAll(dragons => dragons == null);
         dragonCount = spawnedDragons.Count;
-
-        if (dragonCount <= maxDragons)
-        {
-            StartCoroutine(SpawnDragons());
-        }
     }
 
     IEnumerator SpawnDragons()
     {
-        while (dragonCount <= maxDragons)
+        while (dragonCount < maxDragons)
         {
             Spawn();
 
@@ -43,7 +43,7 @@ public class DragonSpawner : MonoBehaviour
 
     void Spawn()
     {
-        GameObject newDragon = Instantiate(dragons, transform.position, Quaternion.identity);
+        GameObject newDragon = Instantiate(dragons, transform.position, Quaternion.identity, dragonContainer);
 
         spawnedDragons.Add(newDragon);
         dragonCount = spawnedDragons.Count;

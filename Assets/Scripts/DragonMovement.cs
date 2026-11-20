@@ -18,7 +18,7 @@ public class DragonMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        player = Camera.main.gameObject;
     }
 
     // Update is called once per frame
