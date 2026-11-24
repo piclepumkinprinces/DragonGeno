@@ -2,28 +2,40 @@ using UnityEngine;
 
 public class DragonMovement : MonoBehaviour
 {
-    public float speed;
-    public float flightSpeed;
-    public float runSpeed;
+    public Transform spawnArea;
+    public float speed = 2f;
 
-    [Space]
+    private Vector3 targetPosition;
 
-    public int health;
-    public float detectionRange;
-
-    [Space]
-
-    public GameObject player;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        player = Camera.main.gameObject;
+        SetRandomTarget();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(
+            transform.position,
+            targetPosition,
+            speed * Time.deltaTime
+        );
+
+        if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
+        {
+            SetRandomTarget();
+        }
+    }
+
+    void SetRandomTarget()
+    {
+        Vector3 halfSize = spawnArea.lossyScale / 2f;
+
+        Vector3 randomPosition = new Vector3(
+            Random.Range(-halfSize.x, halfSize.x),
+            1f,
+            Random.Range(-halfSize.z, halfSize.z)
+        );
+
+        targetPosition = spawnArea.position + randomPosition;
     }
 }

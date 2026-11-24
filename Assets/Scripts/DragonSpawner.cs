@@ -13,6 +13,8 @@ public class DragonSpawner : MonoBehaviour
 
     public GameObject[] dragonPrefabs;
 
+    public Transform[] spawnPlaces;
+
     private Transform dragonContainer;
 
     public bool spawn;
@@ -58,8 +60,23 @@ public class DragonSpawner : MonoBehaviour
     void Spawn()
     {
         int randomDragon = Random.Range(0, dragonPrefabs.Length);
+        int randomPlace = Random.Range(0, spawnPlaces.Length);
 
-        GameObject newDragon = Instantiate(dragonPrefabs[randomDragon], transform.position, Quaternion.identity, dragonContainer);
+        Transform selectedSpawnPlace = spawnPlaces[randomPlace];
+
+        GameObject newDragon = Instantiate(
+            dragonPrefabs[randomDragon],
+            selectedSpawnPlace.position + new Vector3(0, 1, 0),
+            Quaternion.identity,
+            dragonContainer
+        );
+
+        DragonMovement dragonMovement = newDragon.GetComponent<DragonMovement>();
+
+        if (dragonMovement != null)
+        {
+            dragonMovement.spawnArea = selectedSpawnPlace;
+        }
 
         spawnedDragons.Add(newDragon);
         dragonCount = spawnedDragons.Count;
