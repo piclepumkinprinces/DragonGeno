@@ -5,11 +5,19 @@ public class DragonMovement : MonoBehaviour
     public Transform spawnArea;
     public float speed = 2f;
 
-    private Vector3 targetPosition;
+    public Vector3 targetPosition;
+
+    public bool isGrounded;
+    public bool isFlying;
+    public bool isSprinting;
+
+    public Camera player;
 
     void Start()
     {
         SetRandomTarget();
+
+        player = Camera.main;
     }
 
     void Update()
@@ -24,6 +32,15 @@ public class DragonMovement : MonoBehaviour
         {
             SetRandomTarget();
         }
+
+        if (Vector3.Distance(targetPosition, player.transform.position) < 3f)
+        {
+            isSprinting = true;
+        }
+        else
+        {
+            isSprinting = false;
+        }
     }
 
     void SetRandomTarget()
@@ -32,7 +49,7 @@ public class DragonMovement : MonoBehaviour
 
         Vector3 randomPosition = new Vector3(
             Random.Range(-halfSize.x, halfSize.x),
-            1f,
+            spawnArea.transform.position.y / 2,
             Random.Range(-halfSize.z, halfSize.z)
         );
 
