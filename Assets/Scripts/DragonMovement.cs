@@ -3,7 +3,7 @@ using UnityEngine;
 public class DragonMovement : MonoBehaviour
 {
     public Transform spawnArea;
-    public float speed = 2f;
+    public float speed = 2;
 
     public Vector3 targetPosition;
 
@@ -36,10 +36,12 @@ public class DragonMovement : MonoBehaviour
         if (Vector3.Distance(targetPosition, player.transform.position) < 3f)
         {
             isSprinting = true;
+            speed = 4;
         }
         else
         {
             isSprinting = false;
+            speed = 2;
         }
     }
 
@@ -49,7 +51,7 @@ public class DragonMovement : MonoBehaviour
 
         Vector3 randomPosition = new Vector3(
             Random.Range(-halfSize.x, halfSize.x),
-            spawnArea.transform.position.y / 2,
+            spawnArea.transform.position.y + 1.125f,
             Random.Range(-halfSize.z, halfSize.z)
         );
 
