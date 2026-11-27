@@ -578,8 +578,8 @@ MonoBehaviour:
   dragonCount: 0
   dragonSpawnRate: 5
   dragonPrefabs:
-  - {fileID: 8765237793881309081, guid: c48ee794e27bd934fa166f50ca038012, type: 3}
-  - {fileID: 8765237793881309081, guid: 1d1bd5c64cc21e74b947dffa677d87cf, type: 3}
+  - {fileID: 8521208344290007131, guid: 13dc293cbfd68ae499d286cf38adb77c, type: 3}
+  - {fileID: 8521208344290007131, guid: 13dc293cbfd68ae499d286cf38adb77c, type: 3}
   spawnPlaces:
   - {fileID: 57730817}
   - {fileID: 1989497410}
