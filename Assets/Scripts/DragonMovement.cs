@@ -4,6 +4,7 @@ public class DragonMovement : MonoBehaviour
 {
     public Transform spawnArea;
     public float speed = 2;
+    public float playerDetectionRange;
 
     public Vector3 targetPosition;
 
@@ -33,15 +34,15 @@ public class DragonMovement : MonoBehaviour
             SetRandomTarget();
         }
 
-        if (Vector3.Distance(targetPosition, player.transform.position) < 3f)
+        if (Vector3.Distance(targetPosition, player.transform.position) < playerDetectionRange)
         {
             isSprinting = true;
-            speed = 4;
+            speed = 1;
         }
         else
         {
             isSprinting = false;
-            speed = 2;
+            speed = 0.5f;
         }
     }
 

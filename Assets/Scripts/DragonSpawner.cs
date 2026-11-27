@@ -66,7 +66,7 @@ public class DragonSpawner : MonoBehaviour
 
         GameObject newDragon = Instantiate(
             dragonPrefabs[randomDragon],
-            selectedSpawnPlace.position + new Vector3(0, 0.625f, 0),
+            selectedSpawnPlace.position + new Vector3(Random.Range(-selectedSpawnPlace.localScale.x /2, selectedSpawnPlace.localScale.x /2), 0.625f, Random.Range(-selectedSpawnPlace.localScale.y /2, selectedSpawnPlace.localScale.y /2)),
             Quaternion.identity,
             dragonContainer
         );

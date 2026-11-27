@@ -125,9 +125,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 264189138d44be54187d2dc7e96258b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  spawnArea: {fileID: 0}
   speed: 0.25
-  flightSpeed: 5
-  runSpeed: 7
-  health: 20
-  detectionRange: 25
+  playerDetectionRange: 1.5
+  targetPosition: {x: 0, y: 0, z: 0}
+  isGrounded: 0
+  isFlying: 0
+  isSprinting: 0
   player: {fileID: 0}
